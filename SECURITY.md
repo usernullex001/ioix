@@ -6,7 +6,7 @@
 | ------- | --------- |
 | A1      | NOP       |
 | A2      | NOP       |
-| B2      | YEP       |
+| B3      | YEP       |
 
 ## Reporting a Vulnerability
 
