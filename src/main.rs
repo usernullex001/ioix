@@ -83,6 +83,7 @@ ver: version of project
 address: address of project (email phone website)
 users: json of users
 cmd: show project commands usage: cmd <cmd>
+detect: show all of project :D xD
 -f<file>: set file! default is info.json usage: -f<file>
 "#);
   }
@@ -117,6 +118,19 @@ cmd: show project commands usage: cmd <cmd>
     },
     None=>{println!("not fund :_(_____");}
    }
+  },
+  "detect"=>{
+   println!(
+r#"Project:
+name:{}
+fullname:{}
+lang:{}
+buildSystem:{}
+version:{}
+team:{}
+address:{}
+desc:{}
+"#,file.name,file.fullname,file.lang,file.buildsystem,file.ver,file.teamname,file.address,file.desc);
   },
   &_=>{
    println!("command not fund :(");
