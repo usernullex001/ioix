@@ -44,25 +44,22 @@ struct File{
  desc:String
 }
 const VERSION:&str=env!("version");
+#[derive(clap::Parser)]
+#[command(
+    name="ioix",
+    version=VERSION,
+    about="Project metadata tool"
+)]
+struct Args{
+ #[arg(short,default_value="info.json")]
+ file:String,
+ cmd:String,
+ #[arg(short)]
+ cmcd:Option<String>,
+}
 fn main()->std::io::Result<()>{
- let mut filename=String::from("./info.json");
- let args:Vec<String>=std::env::args().collect();
- let mut b=String::new();
- let mut a=String::new();
- if args.len()<2{
-  println!(":| usage soon :D");
-  std::process::exit(-1);
- }
- for l in &args{
-  if let Some(n)=l.strip_prefix("-f"){
-   filename=n.to_string();
-  }
-  else if let Some(n)=l.strip_prefix("-c"){
-   b=n.to_string();
-  }
-  else{a=l.to_string();}
- }
- let file:File=serde_json::from_str(&std::fs::read_to_string(filename)?)?;
+ let args=<Args as clap::Parser>::parse();
+ let file:File=serde_json::from_str(&std::fs::read_to_string(args.file)?)?;
  if file.magic!="IOIX"{
   println!("This file not IOIX! need magic = IOIX");
   std::process::exit(-1);
@@ -71,24 +68,7 @@ fn main()->std::io::Result<()>{
   println!("This file version is not support!");
   std::process::exit(-1);
  }
- match a.as_str(){
-  "help"=>{
-   println!(r#"
-help: :| this :/
-version: :| verson :/
-name: name of project
-fullname: fullname of project
-lang: language of project
-bs: build system of project
-team: team name of project
-ver: version of project
-address: address of project (email phone website)
-users: json of users
-cmd: show project commands usage: cmd <cmd>
-detect: show all of project :D xD
--f<file>: set file! default is info.json usage: -f<file>
-"#);
-  }
+ match args.cmd.as_str(){
   "version"=>{println!("{VERSION}");},
   "name"=>{println!("name of project is '{}'",file.name);},
   "fullname"=>{println!("full name of project is '{}'",file.fullname)},
@@ -100,26 +80,24 @@ detect: show all of project :D xD
   "users"=>{println!("{}",serde_json::to_string_pretty(&file.users)?)}
   "desc"=>{println!("desc of project is '{}'",file.desc);}
   "cmd"=>{
-   if b.is_empty(){
-    println!(":| what cmd??? :|");
-    std::process::exit(-1);
-   }
-   match file.cmds.iter().find(|dr|dr.name==b){
+   if let Some(t)=args.cmcd{
+   match file.cmds.iter().find(|dr|dr.name==t){
     Some(t)=>{
      if !t.cmd.is_empty(){
       println!("{}",t.cmd);
-     }
-     if !t.desc.is_empty(){
-      eprintln!("Desc:'{}'",t.desc);
-     }
-     if !t.error.is_empty(){
-      eprintln!("Error:'{}'",t.error);
-     }
-     if !t.warn.is_empty(){
-      eprintln!("Warn:'{}'",t.warn);
-     }
-    },
-    None=>{println!("not fund :_(_____");}
+      }
+      if !t.desc.is_empty(){
+       eprintln!("Desc:'{}'",t.desc);
+      }
+      if !t.error.is_empty(){
+       eprintln!("Error:'{}'",t.error);
+      }
+      if !t.warn.is_empty(){
+       eprintln!("Warn:'{}'",t.warn);
+      }
+     },
+     None=>{eprintln!("not Found! :(");}
+    }
    }
   },
   "detect"=>{
