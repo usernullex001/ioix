@@ -40,6 +40,8 @@ struct File{
  cmds:Vec<Filecmds>,
  #[serde(default)]
  users:Vec<Fileusers>,
+ #[serde(default)]
+ desc:String
 }
 const VERSION:&str=env!("version");
 fn main()->std::io::Result<()>{
@@ -96,6 +98,7 @@ detect: show all of project :D xD
   "ver"=>{println!("version of project is '{}'",file.ver)}
   "address"=>{println!("address of project is '{}'",file.address)},
   "users"=>{println!("{}",serde_json::to_string_pretty(&file.users)?)}
+  "desc"=>{println!("desc of project is '{}'",file.desc);}
   "cmd"=>{
    if b.is_empty(){
     println!(":| what cmd??? :|");
