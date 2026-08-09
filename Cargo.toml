@@ -1,6 +1,6 @@
 [package]
 name = "ioix"
-version = "1.0.1"
+version = "1.0.2"
 edition = "2024"
 description = "A lightweight Rust CLI tool for project metadata"
 readme = "README.md"
