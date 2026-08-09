@@ -1,8 +1,8 @@
 {
- "version":"1.0.0",
+ "version":"1.0.1",
  "magic":"IOIX",
  "name":"IOIX",
- "ver":"1.0.0",
+ "ver":"1.0.1",
  "fullname":"Info Of Info xD",
  "lang":"Rust",
  "buildsystem":"Cargo",
