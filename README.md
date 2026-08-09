@@ -16,11 +16,13 @@ IOIX is a lightweight Rust CLI tool that stores project metadata, commands, and 
 - ***Done*** :D
 <br>
 Orrr....
+
 ```bash
 git clone https://github.com/usernullex001/ioix
 cd ioix
 cargo build --release
 ```
+
 :|
 
 ## Usage
