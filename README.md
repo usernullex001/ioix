@@ -22,6 +22,7 @@ cd ioix
 cargo build --release
 ```
 :|
+
 ## Usage
 very simple :)
 <br>
