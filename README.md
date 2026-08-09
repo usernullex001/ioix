@@ -1,2 +1,97 @@
 # ioix
-A lightweight tool for managing project information, commands, and metadata through a simple JSON format.
+![Rust](https://img.shields.io/badge/Rust-orange?logo=rust)
+![License](https://img.shields.io/badge/license-EPL--2.0-blue)
+<br>
+IOIX is a lightweight Rust CLI tool that stores project metadata, commands, and information in a simple JSON file.
+-
+## Features
+- 🚀 Fast and lightweight
+- 🦀 Written in Rust
+- 💻 Command-line interface
+- 📄 JSON-based project metadata
+- ⚙️ Custom project commands
+## Installation
+- git clone
+- cargo build
+- ***Done*** :D
+<br>
+Orrr....
+```bash
+git clone https://github.com/usernullex001/ioix
+cd ioix
+cargo build --release
+```
+:|
+## Usage
+very simple :)
+<br>
+usage: ioix \<cmd>
+### commands
+| Command  | Description                                              |
+| -------- | -------------------------------------------------------- |
+| version  | version of **ioix(not project)**                         |
+| name     | name of project                                          |
+| fullname | fullname of project                                      | 
+| lang     | language of project                                      |
+| bs       | build system of project                                  |
+| team     | team of project(name)                                    |
+| ver      | version of **project**                                   |
+| address  | address of project authors(email phone ...)              |
+| users    | json of users (you cant search or ... by grep or ... :D) |
+| desc     | descritions of project                                   |
+| cmd      | this hard! ioix cmd -c \<cmd>                            |
+| detect   | previe of project                                        |
+### cmd of cmd :D
+cmd of cmd like npm run start :)
+<br>
+example in json:
+```json
+ "cmds":[
+   {
+    "name":"build",
+    "cmd":"cargo build",
+    "desc":"build the project :|"
+   },
+   {
+   "name":"run",
+   "error":"Error! the app need some args! run manual :D",
+   "desc":"run the project :|"
+   }
+ ]
+\
+```
+you can: ioix cmd -c build | sh<br>
+cmd -> stdout<br>
+other -> stderr<br>
+do not run understand cmd :|
+## Example(you only read this :|)
+for example read info.json in this project :D<br>
+for cmd:<br>
+ioix \<cmds> :|<br>
+for cmds: ^
+<div style="margin-left:72px;margin-top:-39px">|</div>
+<div style="margin-left:72px;margin-top:-20px">|</div>
+<div style="margin-left:72px;margin-top:-11px">|</div>
+
+## Configuration
+a... soon :D (not have :()
+## Documentation
+Documentation is currently being written.(:D)
+## Contributing
+- bug fix
+- buf report
+- add features
+- every you like :D
+## Roadmap(Very Big!)
+- [ ] add comments :(
+- [ ] optimize :D
+- [x] add ice cream support :)
+- [ ] add pluginnnnn :D
+## Dependencies
+- serde :D
+- serde json :)
+- clap :O
+- you <3
+## License
+Licensed under the Eclipse Public License 2.0.
+# END OF FILE :D
