@@ -71,11 +71,7 @@ do not run understand cmd :|
 for example read info.json in this project :D<br>
 for cmd:<br>
 ioix \<cmds> :|<br>
-for cmds: ^
-<div style="margin-left:72px;margin-top:-39px">|</div>
-<div style="margin-left:72px;margin-top:-20px">|</div>
-<div style="margin-left:72px;margin-top:-11px">|</div>
-
+for cmds: read Commands :D
 ## Configuration
 a... soon :D (not have :()
 ## Documentation
