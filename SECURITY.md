@@ -4,9 +4,7 @@
 
 | Version | Supported |
 | ------- | --------- |
-| A1      | NOP       |
-| A2      | NOP       |
-| B3      | YEP       |
+|  1.0.0  | YEP       |
 
 ## Reporting a Vulnerability
 

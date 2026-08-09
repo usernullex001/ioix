@@ -1,8 +1,8 @@
 {
- "version":"A2-BF",
+ "version":"1.0.0",
  "magic":"IOIX",
  "name":"IOIX",
- "ver":"A2-BF",
+ "ver":"1.0.0",
  "fullname":"Info Of Info xD",
  "lang":"Rust",
  "buildsystem":"Cargo",
