@@ -2,10 +2,10 @@
 name = "ioix"
 version = "1.0.0"
 edition = "2024"
-description = "A lightweight CLI tool for managing project metadata using JSON"
-license = "EPL-2.0"
+description = "A lightweight Rust CLI tool for project metadata"
 repository = "https://github.com/usernullex001/ioix"
-readme = "README.md"
+homepage = "https://github.com/usernullex001/ioix"
+license = "EPL-2.0"
 keywords = ["cli", "metadata", "json", "project"]
 categories = ["command-line-utilities"]
 
