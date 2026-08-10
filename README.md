@@ -113,7 +113,7 @@ a... soon :D (not have :()
 Documentation is currently being written.(:D)
 ## Contributing
 - bug fix
-- buf report
+- bug report
 - add features
 - every you like :D
 ## Roadmap(Very Big!)
