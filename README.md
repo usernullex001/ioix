@@ -37,20 +37,22 @@ very simple :)
 <br>
 usage: ioix \<cmd>
 ### commands
-| Command  | Description                                              |
-| -------- | -------------------------------------------------------- |
-| version  | version of **ioix(not project)**                         |
-| name     | name of project                                          |
-| fullname | fullname of project                                      | 
-| lang     | language of project                                      |
-| bs       | build system of project                                  |
-| team     | team of project(name)                                    |
-| ver      | version of **project**                                   |
-| address  | address of project authors(email phone ...)              |
-| users    | json of users (you cant search or ... by grep or ... :D) |
-| desc     | descritions of project                                   |
-| cmd      | this hard! ioix cmd -c \<cmd>                            |
-| detect   | previe of project                                        |
+| Command      | Description                                                 |
+| --------     | --------------------------------------------------------    |
+| version      | version of **ioix(not project)**                            |
+| name         | name of project                                             |
+| fullname     | fullname of project                                         | 
+| lang         | language of project                                         |
+| bs           | build system of project                                     |
+| team         | team of project(name)                                       |
+| ver          | version of **project**                                      |
+| address      | address of project authors(email phone ...)                 |
+| users        | json of users (you cant search or ... by grep or ... :D)    |
+| desc         | descritions of project                                      |
+| cmd          | this hard! ioix cmd -c \<cmd>                               |
+| detect       | previe of project                                           |
+| viv          | version = ver :) only for ioix :D                           |
+| cargo-update | not good name :( convert cargo.toml and json.info :D (hard) |
 ### cmd of cmd :D
 cmd of cmd like npm run start :)
 <br>
@@ -74,6 +76,31 @@ you can: ioix cmd -c build | sh<br>
 cmd -> stdout<br>
 other -> stderr<br>
 do not run understand cmd :|
+
+## cargo-update
+not good name well... :)<br>
+look:
+```rust
+"cvtfv"=>{ct["package"]["version"]=toml::Value::String(file.ver.to_string());},
+"fvtcv"=>{file.ver=ct["package"]["version"].to_string();},
+"cdtfd"=>{ct["package"]["description"]=toml::Value::String(file.desc.to_string());},
+"fdtcd"=>{file.desc=ct["package"]["description"].to_string();},
+"cntfn"=>{ct["package"]["name"]=toml::Value::String(file.name.to_string());},
+"fntcn"=>{file.name=ct["package"]["name"].to_string();},
+```
+ct=cargo.toml<br>
+file=info.json<br>
+or...<br>
+c=cargo toml<br>
+f=file<br>
+t=to<br>
+and list:<br>
+| short name | long name |
+| ---------- | --------- |
+| v | version |
+| d | desc    |
+| n | name    |
+
 ## Example(you only read this :|)
 for example read info.json in this project :D<br>
 for cmd:<br>
