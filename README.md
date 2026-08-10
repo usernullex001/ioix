@@ -72,7 +72,6 @@ example in json:
    "desc":"run the project :|"
    }
  ]
-\
 ```
 you can: ioix cmd -c build | sh<br>
 cmd -> stdout<br>
