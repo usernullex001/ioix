@@ -1,0 +1,52 @@
+IOIX Public License 1.0
+Copyright (c) 2026 usernullex001
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, subject to the following conditions:
+Copyright and License Notice
+The above copyright notice, this license notice, and the original source
+information must be included in all copies or substantial portions of the
+Software.
+Source Attribution
+Any distribution of the Software or any modified version of the Software must
+clearly state the original source of the Software.
+The attribution must include:
+Original project name
+Original author or organization
+Original repository or official source location
+Modification and Source Availability
+If you modify any part of the Software and distribute the modified version,
+you must make the source code of the modified parts available under this same
+license.
+The source availability requirement applies only to the parts of the Software
+that were modified from the original Software.
+Independent software, applications, services, or projects that use, depend on,
+link to, or communicate with the Software are not required to release their own
+source code.
+Meaning of Open Source Availability
+"Open source" in this license means that the source code of the required
+modified parts must be available for inspection, modification, and reuse under
+the terms of this license.
+Open source availability does not require:
+Payment of money
+Creating an account
+Registering with any service
+Granting access to private systems
+Providing personal information
+Providing support or services
+The purpose of this requirement is only to ensure that modifications to this
+Software remain transparent and accessible.
+Distribution
+You may distribute original or modified versions of this Software, including
+commercial distributions, provided that the conditions of this license are
+followed.
+Disclaimer
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR
+OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+OR OTHER DEALINGS IN THE SOFTWARE.
