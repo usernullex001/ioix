@@ -79,7 +79,8 @@ do not run understand cmd :|
 
 ## cargo-update
 not good name well... :)<br>
-look:
+ioix cargo-update -c \<text>
+text? look!:
 ```rust
 "cvtfv"=>{ct["package"]["version"]=toml::Value::String(file.ver.to_string());},
 "fvtcv"=>{file.ver=ct["package"]["version"].to_string();},
