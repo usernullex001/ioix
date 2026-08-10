@@ -9,9 +9,8 @@ IOIX is a lightweight Rust CLI tool that stores project metadata, commands, and 
 <br>
 for latest of readme and security go to github <3
 <br>
-we have crates and github :D<br>
+we have github :D<br>
 [IOIX crates](https://crates.io/crates/ioix)
-[IOIX github](https://github.com/usernullex001/ioix)
 -
 ## Features
 - 🚀 Fast and lightweight
