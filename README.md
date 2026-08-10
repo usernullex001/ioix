@@ -129,5 +129,5 @@ Documentation is currently being written.(:D)
 - clap :O
 - you <3
 ## License
-IOIX Public License is inspired by the MIT License with additional source attribution and modification transparency requirements.
+Licensed under the GNU Public License 3.0.
 # END OF FILE :D
