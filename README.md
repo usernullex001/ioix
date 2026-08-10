@@ -129,5 +129,5 @@ Documentation is currently being written.(:D)
 - clap :O
 - you <3
 ## License
-Licensed under the Eclipse Public License 2.0.
+IOIX Public License is inspired by the MIT License with additional source attribution and modification transparency requirements.
 # END OF FILE :D
