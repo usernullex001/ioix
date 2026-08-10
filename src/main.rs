@@ -44,6 +44,23 @@ struct File{
  desc:String
 }
 const VERSION:&str=env!("version");
+#[derive(clap::Subcommand)]
+enum Cmds{
+    Version,
+    Name,
+    Fullname,
+    Lang,
+    Bs,
+    Team,
+    Ver,
+    Address,
+    Users,
+    Desc,
+    Cmd,
+    Detect,
+    CargoUpdate,
+    VIV,//Version is Ver xD
+}
 #[derive(clap::Parser)]
 #[command(
     name="ioix",
@@ -53,13 +70,14 @@ const VERSION:&str=env!("version");
 struct Args{
  #[arg(short,default_value="info.json")]
  file:String,
- cmd:String,
  #[arg(short)]
  cmcd:Option<String>,
+ #[command(subcommand)]
+ cmd:Cmds,
 }
 fn main()->std::io::Result<()>{
  let args=<Args as clap::Parser>::parse();
- let file:File=serde_json::from_str(&std::fs::read_to_string(args.file)?)?;
+ let mut file:File=serde_json::from_str(&std::fs::read_to_string(&args.file)?)?;
  if file.magic!="IOIX"{
   println!("This file not IOIX! need magic = IOIX");
   std::process::exit(-1);
@@ -68,18 +86,38 @@ fn main()->std::io::Result<()>{
   println!("This file version is not support!");
   std::process::exit(-1);
  }
- match args.cmd.as_str(){
-  "version"=>{println!("{VERSION}");},
-  "name"=>{println!("name of project is '{}'",file.name);},
-  "fullname"=>{println!("full name of project is '{}'",file.fullname)},
-  "lang"=>{println!("language of project is '{}'",file.lang)},
-  "bs"=>{println!("build system of project is '{}'",file.buildsystem)},
-  "team"=>{println!("team of project is '{}'",file.teamname)},
-  "ver"=>{println!("version of project is '{}'",file.ver)}
-  "address"=>{println!("address of project is '{}'",file.address)},
-  "users"=>{println!("{}",serde_json::to_string_pretty(&file.users)?)}
-  "desc"=>{println!("desc of project is '{}'",file.desc);}
-  "cmd"=>{
+ match &args.cmd{
+  Cmds::Version=>{println!("{VERSION}");},
+  Cmds::Name=>{println!("name of project is '{}'",file.name);},
+  Cmds::Fullname=>{println!("full name of project is '{}'",file.fullname)},
+  Cmds::Lang=>{println!("language of project is '{}'",file.lang)},
+  Cmds::Bs=>{println!("build system of project is '{}'",file.buildsystem)},
+  Cmds::Team=>{println!("team of project is '{}'",file.teamname)},
+  Cmds::Ver=>{println!("version of project is '{}'",file.ver)}
+  Cmds::Address=>{println!("address of project is '{}'",file.address)},
+  Cmds::Users=>{println!("{}",serde_json::to_string_pretty(&file.users)?)}
+  Cmds::Desc=>{println!("desc of project is '{}'",file.desc);}
+  Cmds::CargoUpdate=>{
+        let mut ct:toml::Value=toml::from_str(&std::fs::read_to_string("Cargo.toml")?).unwrap();
+        if let Some(t)=args.cmcd{
+            match t.as_str(){
+                "cvtfv"=>{ct["package"]["version"]=toml::Value::String(file.ver.to_string());},
+                "fvtcv"=>{file.ver=ct["package"]["version"].to_string();},
+                "cdtfd"=>{ct["package"]["description"]=toml::Value::String(file.desc.to_string());},
+                "fdtcd"=>{file.desc=ct["package"]["description"].to_string();},
+                "cntfn"=>{ct["package"]["name"]=toml::Value::String(file.name.to_string());},
+                "fntcn"=>{file.name=ct["package"]["name"].to_string();},
+                _=>{eprintln!("usage: -c (first)t(second)");}
+            }
+        }
+        std::fs::write("Cargo.toml",toml::to_string_pretty(&ct).unwrap())?;
+        std::fs::write(args.file,serde_json::to_string_pretty(&file).unwrap())?;
+  }
+  Cmds::VIV=>{
+      file.version=file.ver.clone();
+      std::fs::write(&args.file,serde_json::to_string_pretty(&file)?)?;
+  }
+  Cmds::Cmd=>{
    if let Some(t)=args.cmcd{
    match file.cmds.iter().find(|dr|dr.name==t){
     Some(t)=>{
@@ -100,7 +138,7 @@ fn main()->std::io::Result<()>{
     }
    }
   },
-  "detect"=>{
+  Cmds::Detect=>{
    println!(
 r#"Project:
 name:{}
@@ -113,9 +151,6 @@ address:{}
 desc:{}
 "#,file.name,file.fullname,file.lang,file.buildsystem,file.ver,file.teamname,file.address,file.desc);
   },
-  &_=>{
-   println!("command not fund :(");
-  }
  }
  Ok(())
 }
