@@ -47,7 +47,7 @@ usage: ioix \<cmd>
 | team         | team of project(name)                                       |
 | ver          | version of **project**                                      |
 | address      | address of project authors(email phone ...)                 |
-| users        | json of users (you cant search or ... by grep or ... :D)    |
+| users        | json of users (you can search or ... by grep or ... :D)    |
 | desc         | descritions of project                                      |
 | cmd          | this hard! ioix cmd -c \<cmd>                               |
 | detect       | previe of project                                           |
@@ -79,7 +79,7 @@ do not run understand cmd :|
 
 ## cargo-update
 not good name well... :)<br>
-ioix cargo-update -c \<text>
+ioix cargo-update -c \<text><br>
 text? look!:
 ```rust
 "cvtfv"=>{ct["package"]["version"]=toml::Value::String(file.ver.to_string());},
