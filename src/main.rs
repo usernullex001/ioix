@@ -170,7 +170,12 @@ desc:{}
 "#,file.name,file.fullname,file.lang,file.buildsystem,file.ver,file.teamname,file.address,file.desc);
   },
   Cmds::Init=>{
-      let file=File::default();
+      let file=File{
+        magic:"IOIX".into(),
+        version:VERSION.into(),
+        teamname:std::env::var("USER").unwrap(),
+        ..Default::default()
+      };
       std::fs::write(&args.file,&serde_json::to_string_pretty(&file)?)?;
   }
  }
