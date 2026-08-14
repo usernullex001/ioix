@@ -81,6 +81,7 @@ ioix <command>
 | detect | Preview project information |
 | viv | Version alias (ver = viv) |
 | cargo-update | Convert/sync cargo.toml and info.json |
+| init | Init project :DDDDDD (only info.json xD)|
 
 ---
 
