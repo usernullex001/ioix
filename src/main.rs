@@ -173,7 +173,8 @@ desc:{}
       let file=File{
         magic:"IOIX".into(),
         version:VERSION.into(),
-        teamname:std::env::var("USER").unwrap(),
+        teamname:std::env::var("USER").or_else(|_|std::env::var("USERNAME")).unwrap_or_else(|_|"unknown".into()),
+        // linux: USER | windows: USERNAME | xDDDDD
         ..Default::default()
       };
       std::fs::write(&args.file,&serde_json::to_string_pretty(&file)?)?;
