@@ -20,7 +20,7 @@ struct Fileusers{
  #[serde(default)]
  desc:String,
 }
-#[derive(serde::Serialize,serde::Deserialize)]
+#[derive(serde::Serialize,serde::Deserialize,Default)]
 struct File{
  version:String,
  magic:String,
@@ -41,10 +41,11 @@ struct File{
  #[serde(default)]
  users:Vec<Fileusers>,
  #[serde(default)]
- desc:String
+ desc:String,
 }
 const VERSION:&str=env!("version");
 #[derive(clap::Subcommand)]
+#[derive(PartialEq)]
 enum Cmds{
     Version,
     Name,
@@ -59,7 +60,8 @@ enum Cmds{
     Cmd,
     Detect,
     CargoUpdate,
-    VIV,//Version is Ver xD
+    Viv,//Version is Ver xD
+    Init,
 }
 #[derive(clap::Parser)]
 #[command(
@@ -75,17 +77,33 @@ struct Args{
  #[command(subcommand)]
  cmd:Cmds,
 }
+fn version_cmp(a:&str,b:&str)->std::cmp::Ordering{
+    a.split('.').map(|x|x.parse::<u32>().unwrap()).collect::<Vec<u32>>().cmp(&b.split('.').map(|x|x.parse::<u32>().unwrap()).collect::<Vec<u32>>())
+}
+fn read_file(filename:String)->File{
+    let file:File=serde_json::from_str(&std::fs::read_to_string(&filename).unwrap()).unwrap();
+    if file.magic!="IOIX"{
+        eprintln!("Bro really gave me this instead of the IOIX file 💀");
+    }
+    if version_cmp(&file.version,VERSION)==std::cmp::Ordering::Less{
+        eprintln!("Dude, can you make your words a bit more classy? You're running an outdated version. :D");
+    }
+    else if version_cmp(&file.version,VERSION)==std::cmp::Ordering::Greater{
+        eprintln!("Oooo, I'm aging over here, dude. Time for an update. :D");
+    }
+    else if file.version!=VERSION{
+        eprintln!("Bro, I have no idea what this version even means. :D");
+    }
+    else{
+        return file
+    }
+    std::process::exit(-1);
+}
 fn main()->std::io::Result<()>{
  let args=<Args as clap::Parser>::parse();
- let mut file:File=serde_json::from_str(&std::fs::read_to_string(&args.file)?)?;
- if file.magic!="IOIX"{
-  println!("This file not IOIX! need magic = IOIX");
-  std::process::exit(-1);
- }
- if file.version!=VERSION{
-  println!("This file version is not support!");
-  std::process::exit(-1);
- }
+ let mut file=File::default();
+ if args.cmd==Cmds::Init{/*lililili xD*/}
+ else {file=read_file(args.file.clone());}
  match &args.cmd{
   Cmds::Version=>{println!("{VERSION}");},
   Cmds::Name=>{println!("name of project is '{}'",file.name);},
@@ -113,7 +131,7 @@ fn main()->std::io::Result<()>{
         std::fs::write("Cargo.toml",toml::to_string_pretty(&ct).unwrap())?;
         std::fs::write(args.file,serde_json::to_string_pretty(&file).unwrap())?;
   }
-  Cmds::VIV=>{
+  Cmds::Viv=>{
       file.version=file.ver.clone();
       std::fs::write(&args.file,serde_json::to_string_pretty(&file)?)?;
   }
@@ -151,6 +169,10 @@ address:{}
 desc:{}
 "#,file.name,file.fullname,file.lang,file.buildsystem,file.ver,file.teamname,file.address,file.desc);
   },
+  Cmds::Init=>{
+      let file=File::default();
+      std::fs::write(&args.file,&serde_json::to_string_pretty(&file)?)?;
+  }
  }
  Ok(())
 }
