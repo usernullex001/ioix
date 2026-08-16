@@ -46,7 +46,7 @@ git clone https://github.com/usernullex001/ioix
 cd ioix
 cargo build --release
 ```
-If have ioix.... ```bash ioix build``` :D
+If have ioix.... ```ioix build``` :D
 
 Done :D
 
