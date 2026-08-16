@@ -10,7 +10,8 @@
 | 2.0.0 | NOP |
 | 2.0.1 | NOP |
 | 3.0.0 | NOP |
-| 3.0.1 | YEP |
+| 3.0.1 | NOP |
+| 3.1.0 | YEP |
 ## Reporting a Vulnerability
 
-bsmlflill@outlook.com :D xD
+bsmlflill@outlook.com :D dont spam xD

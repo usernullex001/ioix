@@ -1,8 +1,8 @@
 {
-  "version": "3.0.1",
+  "version": "3.1.0",
   "magic": "IOIX",
   "name": "IOIX",
-  "ver": "3.0.1",
+  "ver": "3.1.0",
   "fullname": "Info Of Info xD",
   "lang": "Rust",
   "buildsystem": "Cargo",
@@ -13,18 +13,25 @@
       "name": "build",
       "cmdunix": "cargo build",
       "cmdwind": "cargo build",
-      "desc": "build the project :|"
+      "desc": "build the project :|",
+      "error": "",
+      "warn": ""
     },
     {
       "name": "run",
+      "cmdunix": "",
+      "cmdwind": "",
       "desc": "run the project :|",
-      "error": "Error! the app need some args! run manual :D"
+      "error": "Error! the app need some args! run manual :D",
+      "warn": ""
     },
     {
       "name": "linet",
       "cmdunix": "cargo clippy",
       "cmdwind": "cargo clippy",
-      "desc": ":/"
+      "desc": ":/",
+      "error": "",
+      "warn": ""
     }
   ],
   "users": [

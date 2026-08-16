@@ -75,14 +75,16 @@ ioix <command>
 | team | Project team name |
 | ver | Project version |
 | address | Project author address |
-| users | JSON users data (search with grep or other tools :D) |
 | desc | Project description |
 | cmd | Run custom project commands |
 | detect | Preview project information |
 | viv | Version alias (ver = viv) |
 | cargo-update | Convert/sync cargo.toml and info.json |
 | init | Init project :DDDDDD (only info.json xD)|
-
+| usemator | JSON users data (search with grep or other tools :D) (name:Users + Terminator xD)|
+| users | usemator but friendly :D |
+| runcmd | like cmd but run! windows: cmd /C CMD unix: sh -c CMD |
+| build | run ioix -c build runcmd :D |
 ---
 
 # Custom Commands :D
@@ -95,7 +97,8 @@ Example `info.json`:
 "cmds": [
   {
     "name": "build",
-    "cmd": "cargo build",
+    "cmdunix": "cargo build",
+    "cmdwind": "cargo build",
     "desc": "Build the project :|"
   },
   {
@@ -109,7 +112,7 @@ Example `info.json`:
 Run:
 
 ```bash
-ioix cmd -c build
+ioix -c build cmd
 ```
 
 Output:
@@ -117,6 +120,10 @@ Output:
 ```
 stdout -> command output
 stderr -> errors
+```
+or...
+```bash
+ioix -c build runcmd
 ```
 
 IOIX does not magically understand every command :|
