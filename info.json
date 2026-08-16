@@ -11,17 +11,20 @@
   "cmds": [
     {
       "name": "build",
-      "cmd": "cargo build",
-      "desc": "build the project :|",
-      "error": "",
-      "warn": ""
+      "cmdunix": "cargo build",
+      "cmdwind": "cargo build",
+      "desc": "build the project :|"
     },
     {
       "name": "run",
-      "cmd": "",
       "desc": "run the project :|",
-      "error": "Error! the app need some args! run manual :D",
-      "warn": ""
+      "error": "Error! the app need some args! run manual :D"
+    },
+    {
+      "name": "linet",
+      "cmdunix": "cargo clippy",
+      "cmdwind": "cargo clippy",
+      "desc": ":/"
     }
   ],
   "users": [

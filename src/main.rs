@@ -2,7 +2,9 @@
 struct Filecmds{
  name:String,
  #[serde(default)]
- cmd:String,
+ cmdunix:String,
+ #[serde(default)]
+ cmdwind:String,
  #[serde(default)]
  desc:String,
  #[serde(default)]
@@ -56,12 +58,15 @@ enum Cmds{
     Ver,
     Address,
     Users,
+    Usemator,/// Users + Terminator(video) xDDDDDDDDDD
     Desc,
     Cmd,
+    Runcmd,
     Detect,
     CargoUpdate,
-    Viv,//Version is Ver xD
+    Viv,/// Version is Ver xD
     Init,
+    Build,
 }
 #[derive(clap::Parser)]
 #[command(
@@ -99,6 +104,62 @@ fn read_file(filename:String)->File{
     }
     std::process::exit(-1);
 }
+enum OsType{
+    #[cfg(unix)]
+    Unix,
+    #[cfg(windows)]
+    Wind,
+}
+struct CmdParsed{
+    cmd:String,
+    os:OsType,
+}
+fn parse_cmds(t:&Filecmds)->CmdParsed{
+  let cmd;
+  let os;
+  #[cfg(unix)]
+  {
+  cmd=t.cmdunix.clone();
+  os=OsType::Unix;
+  }
+  #[cfg(windows)]
+  {
+  cmd=t.cmdwind.clone();
+  os=OsType::Wind;
+  }
+  if !t.desc.is_empty(){
+        eprintln!("Desc:'{}'",t.desc);
+  }
+  if !t.error.is_empty(){
+   eprintln!("Error:'{}'",t.error);
+  }
+  if !t.warn.is_empty(){
+   eprintln!("Warn:'{}'",t.warn);
+  }
+  if cmd.is_empty(){
+      eprintln!("Error:':/ koo koo commandesh? xD'");
+      return CmdParsed{cmd:String::new(),os};
+  }
+  CmdParsed{cmd,os}
+}
+fn run_cmd(t:String,cmds:Vec<Filecmds>){
+  match cmds.iter().find(|dr|dr.name==t){
+      Some(t)=>{
+          let cmd=parse_cmds(t);
+          if !cmd.cmd.is_empty(){
+              let (nb,pc)=match cmd.os{
+                  #[cfg(unix)]
+                  OsType::Unix=>("sh","-c"),
+                  #[cfg(windows)]
+                  OsType::Wind=>("cmd","/C"),
+              };
+              let st=std::process::Command::new(nb).arg(pc).arg(cmd.cmd).status().unwrap();
+              eprintln!("Status:{st}");
+          }
+      },
+      None=>{eprintln!("not found! :()");}
+  }
+}
 fn main()->std::io::Result<()>{
  let args=<Args as clap::Parser>::parse();
  let mut file=File::default();
@@ -113,7 +174,13 @@ fn main()->std::io::Result<()>{
   Cmds::Team=>{println!("team of project is '{}'",file.teamname)},
   Cmds::Ver=>{println!("version of project is '{}'",file.ver)}
   Cmds::Address=>{println!("address of project is '{}'",file.address)},
-  Cmds::Users=>{println!("{}",serde_json::to_string_pretty(&file.users)?)}
+  Cmds::Usemator=>{println!("{}",serde_json::to_string_pretty(&file.users)?)}
+  Cmds::Users=>{
+      for u in file.users{
+          println!("--{}={}::{}:",u.id,u.rank,u.name);
+          println!("{}",u.desc);
+      }
+  }
   Cmds::Desc=>{println!("desc of project is '{}'",file.desc);}
   Cmds::CargoUpdate=>{
         let mut ct:toml::Value=toml::from_str(&std::fs::read_to_string("Cargo.toml")?).unwrap();
@@ -139,23 +206,20 @@ fn main()->std::io::Result<()>{
    if let Some(t)=args.cmcd{
    match file.cmds.iter().find(|dr|dr.name==t){
     Some(t)=>{
-     if !t.cmd.is_empty(){
-      println!("{}",t.cmd);
-      }
-      if !t.desc.is_empty(){
-       eprintln!("Desc:'{}'",t.desc);
-      }
-      if !t.error.is_empty(){
-       eprintln!("Error:'{}'",t.error);
-      }
-      if !t.warn.is_empty(){
-       eprintln!("Warn:'{}'",t.warn);
-      }
+        println!("{}",parse_cmds(t).cmd);
      },
      None=>{eprintln!("not Found! :(");}
     }
    }
   },
+  Cmds::Runcmd=>{
+      if let Some(t)=args.cmcd{
+           run_cmd(t,file.cmds);
+      }
+  }
+  Cmds::Build=>{
+      run_cmd("build".into(),file.cmds);
+  }
   Cmds::Detect=>{
    println!(
 r#"Project:
