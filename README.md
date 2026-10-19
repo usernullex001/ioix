@@ -239,6 +239,6 @@ You can:
 
 # License
 
-Licensed under the EPL-2.0 License.
+Licensed under the GPL-3.0 License.
 
 # END OF FILE :D
